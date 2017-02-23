@@ -8,6 +8,14 @@
 require('./bootstrap');
 
 /**
+ * Bulma is a modern CSS framework based on Flexbox. We need to pull in
+ * a minimal JavaScript library for handling some of the menus and other
+ * interactive elements.
+ */
+
+require('./bulma');
+
+/**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.

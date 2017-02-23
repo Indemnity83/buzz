@@ -5,12 +5,12 @@
         Buzzed
       </a>
     </div>
-    <span class="nav-toggle">
+    <span class="nav-toggle" onclick="toggleNav()">
       <span></span>
       <span></span>
       <span></span>
     </span>
-    <div class="nav-right nav-menu">
+    <div id="nav-menu" class="nav-right nav-menu">
       <a href="/" class="nav-item is-tab">
         Home
       </a>
@@ -21,8 +21,8 @@
         Database
       </a>
       @if (Auth::guest())
-          <span class="nav-item" href="{{ route('login') }}">
-            <a class="button">
+          <span class="nav-item">
+            <a class="button" href="{{ route('login') }}">
               Log in
             </a>
             <a class="button is-info" href="{{ route('register') }}">

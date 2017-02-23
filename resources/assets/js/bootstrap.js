@@ -2,13 +2,6 @@
 window._ = require('lodash');
 
 /**
- * Bulma is a modern CSS framework based on Flexbox which includes a
- * minimal JavaScript library for handilng some of the menus and other
- * interactive elements.
- */
-require('bulma');
-
-/**
  * Vue is a modern JavaScript library for building interactive web interfaces
  * using reactive data binding and reusable components. Vue's API is clean
  * and simple, leaving you to focus on building your next great project.
