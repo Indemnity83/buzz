@@ -2,14 +2,11 @@
 window._ = require('lodash');
 
 /**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
+ * Bulma is a modern CSS framework based on Flexbox which includes a
+ * minimal JavaScript library for handilng some of the menus and other
+ * interactive elements.
  */
-
-window.$ = window.jQuery = require('jquery');
-
-require('bootstrap-sass');
+require('bulma');
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
