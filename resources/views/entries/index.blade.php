@@ -69,6 +69,8 @@
             </tbody>
         </table>
 
+        {{ $entries->links() }}
+
     </div>
   </section>
 

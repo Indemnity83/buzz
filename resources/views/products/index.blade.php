@@ -67,6 +67,8 @@
             </tbody>
         </table>
 
+        {{ $products->links() }}
+
     </div>
   </section>
 

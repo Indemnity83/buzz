@@ -39,6 +39,9 @@ class User extends Authenticatable
 
     public function diary()
     {
-        return $this->entries()->with('product', 'user')->get();
+        return $this->entries()
+            ->with('product', 'user')
+            ->latest()
+            ->paginate(15);
     }
 }
