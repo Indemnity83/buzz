@@ -25,11 +25,13 @@
 <body>
     @include('layouts.nav')
 
-    {{ $slot }}
+    <div id="app">
+        {{ $slot }}
+    </div>
 
     @include('layouts.footer')
 
     <!-- Scripts -->
-    <!-- <script src="{{ asset('js/app.js') }}"></script> -->
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
