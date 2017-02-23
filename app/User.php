@@ -41,7 +41,7 @@ class User extends Authenticatable
     {
         return $this->entries()
             ->with('product', 'user')
-            ->latest()
+            ->orderBy('consumed_at', 'desc')
             ->paginate(15);
     }
 }
