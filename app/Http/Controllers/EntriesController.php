@@ -32,7 +32,7 @@ class EntriesController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
+        $products = Product::orderBy('name')->get();
 
         return view('entries.create', compact('products'));
     }
