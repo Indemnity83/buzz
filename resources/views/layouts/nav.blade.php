@@ -21,8 +21,8 @@
         Database
       </a>
       @if (Auth::guest())
-          <span class="nav-item" href="{{ route('login') }}">
-            <a class="button">
+          <span class="nav-item">
+            <a class="button" href="{{ route('login') }}">
               Log in
             </a>
             <a class="button is-info" href="{{ route('register') }}">
