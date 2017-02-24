@@ -50,7 +50,7 @@ class EntriesController extends Controller
             ->orderBy('consumed_at', 'desc')
             ->get();
 
-        return view('entries.index', compact('entries', 'links'));
+        return view('entries.index', compact('entries', 'links', 'date'));
     }
 
     /**

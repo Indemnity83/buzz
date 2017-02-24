@@ -65,7 +65,7 @@
             {{-- consumed_at --}}
             <label class="label">Consumed</label>
             <p class="control">
-                <input class="input" type="datetime" name="consumed_at" value="{{ old('consumed_at', $entry->consumed_at) }}">
+                <input id="consumed_at" class="input" type="datetime" name="consumed_at" value="{{ old('consumed_at', $entry->date) }}">
             </p>
 
             {{-- Submit --}}
@@ -82,5 +82,14 @@
 
     </div>
   </section>
+
+@slot('scripts')
+    <script>
+       new Pikaday({
+           field: document.getElementById('consumed_at'),
+           maxDate: new Date()
+       });
+    </script>
+@endslot
 
 @endcomponent
