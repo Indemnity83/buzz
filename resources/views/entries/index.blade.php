@@ -61,6 +61,14 @@
                     <th>&nbsp;</th>
                 </tr>
             </thead>
+            <tfoot>
+            <tr>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+                <th><strong>{{ $totalCaffeine }} mg</strong></th>
+                <th>&nbsp;</th>
+            </tr>
+            </tfoot>
             <tbody>
                 @foreach($entries as $entry)
                 <tr>

@@ -6,8 +6,6 @@ use App\Entry;
 use App\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Pagination\DatePaginator;
-use Illuminate\Pagination\Paginator;
 use InvalidArgumentException;
 
 class EntriesController extends Controller
@@ -50,7 +48,11 @@ class EntriesController extends Controller
             ->orderBy('consumed_at', 'desc')
             ->get();
 
-        return view('entries.index', compact('entries', 'links', 'date'));
+        $totalCaffeine = $entries->reduce(function ($cary, $item) {
+            return $cary + $item->quantity * $item->product->caffeine;
+        });
+
+        return view('entries.index', compact('entries', 'links', 'date', 'totalCaffeine'));
     }
 
     /**
