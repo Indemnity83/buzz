@@ -36,12 +36,4 @@ class User extends Authenticatable
     {
         return $this->entries()->create($data);
     }
-
-    public function diary()
-    {
-        return $this->entries()
-            ->with('product', 'user')
-            ->orderBy('consumed_at', 'desc')
-            ->paginate(15);
-    }
 }

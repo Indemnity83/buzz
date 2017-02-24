@@ -21,16 +21,36 @@
                 <h1 class="title">Diary</h1>
             </div>
             <div class="level-right">
-                <a class="button is-primary is-large" href="{{ route('entries.create') }}">
-                    <i class="fa fa-plus"></i>
-                </a>
+                <div class="control is-grouped">
+                    <p class="control">
+                        <a class="button" href="{{ $links['previous'] }}"><i class="fa fa-arrow-left"></i></a>
+                    </p>
+                    <p class="control">
+                        <a class="button is-white is-disabled"><i class="fa fa-fw fa-calendar-o"></i>{{ $links['page'] }}</a>
+                    </p>
+                    <p class="control">
+                        <a class="button {{ $links['next-disabled'] ? 'is-disabled' : '' }}" href="{{ $links['next'] }}"><i class="fa fa-arrow-right"></i></a>
+                    </p>
+                    <p class="control">
+                        <a class="button is-primary" href="{{ route('entries.create') }}"><i class="fa fa-plus"></i></a>
+                    </p>
+                </div>
             </div>
         </nav>
+
+        <nav class="pagination is-centered">
+
+
+            <ul class="pagination-list">
+
+            </ul>
+        </nav>
+
+        <br>
 
         <table class="table">
             <thead>
                 <tr>
-                    <th>Date</th>
                     <th>Product</th>
                     <th>Quantity</th>
                     <th>Caffeine</th>
@@ -40,7 +60,6 @@
             <tbody>
                 @foreach($entries as $entry)
                 <tr>
-                    <th>{{ $entry->consumed_at->diffForHumans() }}</th>
                     <td>{{ $entry->product->name }}</td>
                     <td>{{ $entry->quantity }} oz</td>
                     <td>{{ $entry->quantity * $entry->product->caffeine }} mg</td>
@@ -68,8 +87,6 @@
                 @endforeach
             </tbody>
         </table>
-
-        {{ $entries->links() }}
 
     </div>
   </section>
