@@ -26,7 +26,11 @@
                         <a class="button" href="{{ $links['previous'] }}"><i class="fa fa-arrow-left"></i></a>
                     </p>
                     <p class="control">
-                        <a class="button is-white is-disabled"><i class="fa fa-fw fa-calendar-o"></i>{{ $links['page'] }}</a>
+                        <a class="button is-white" id="page"><i class="fa fa-fw fa-calendar-o"></i>{{ $links['page'] }}</a>
+
+                        <form id="page-form" action="{{ route('entries.index') }}" method="get" style="display: none;">
+                            <input type="text" id="date" name="date" >
+                        </form>
                     </p>
                     <p class="control">
                         <a class="button {{ $links['next-disabled'] ? 'is-disabled' : '' }}" href="{{ $links['next'] }}"><i class="fa fa-arrow-right"></i></a>
@@ -57,6 +61,14 @@
                     <th>&nbsp;</th>
                 </tr>
             </thead>
+            <tfoot>
+            <tr>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+                <th><strong>{{ $totalCaffeine }} mg</strong></th>
+                <th>&nbsp;</th>
+            </tr>
+            </tfoot>
             <tbody>
                 @foreach($entries as $entry)
                 <tr>
@@ -90,5 +102,17 @@
 
     </div>
   </section>
+
+@slot('scripts')
+    <script>
+        new Pikaday({
+            field: document.getElementById('date'),
+            trigger: document.getElementById('page'),
+            defaultDate: new Date('{{ $date }}'),
+            maxDate: new Date(),
+            onSelect: function() { document.getElementById('page-form').submit() }
+        });
+    </script>
+@endslot
 
 @endcomponent

@@ -36,4 +36,9 @@ class Entry extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    public function getDateAttribute()
+    {
+        return $this->consumed_at->format('Y-m-d');
+    }
 }

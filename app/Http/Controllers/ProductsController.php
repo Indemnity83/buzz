@@ -8,6 +8,11 @@ use Illuminate\Validation\Rule;
 
 class ProductsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
+
     /**
      * Display a listing of the resource.
      *
