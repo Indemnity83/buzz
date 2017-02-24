@@ -36,9 +36,4 @@ class User extends Authenticatable
     {
         return $this->entries()->create($data);
     }
-
-    public function diary()
-    {
-        return $this->entries()->with('product', 'user')->get();
-    }
 }

@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Entry;
 use App\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Pagination\DatePaginator;
+use Illuminate\Pagination\Paginator;
+use InvalidArgumentException;
 
 class EntriesController extends Controller
 {
@@ -18,11 +22,35 @@ class EntriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $entries = request()->user()->diary();
+        try {
+            $date = Carbon::createFromFormat('Y-m-d', $request->query('date'))->startOfDay();
+        } catch (InvalidArgumentException $e) {
+            $date = Carbon::today();
+        }
 
-        return view('entries.index', compact('entries'));
+        if($date->copy()->greaterThan(Carbon::today())) {
+            return redirect(route('entries.index', ['date' => Carbon::today()->format('Y-m-d')]));
+        }
+
+        $links = [
+            'previous' => route('entries.index', ['date' => $date->copy()->subDay()->format('Y-m-d')]),
+            'next' => route('entries.index', ['date' => $date->copy()->addDay()->format('Y-m-d')]),
+            'next-disabled' => $date->copy()->greaterThanOrEqualTo(Carbon::today()),
+            'today' => route('entries.index', ['date' => Carbon::today()->format('Y-m-d')]),
+            'page' => $date->format('l, F d, Y'),
+        ];
+
+        $entries = request()
+            ->user()
+            ->entries()
+            ->whereDate('consumed_at', $date->format('Y-m-d'))
+            ->with('product', 'user')
+            ->orderBy('consumed_at', 'desc')
+            ->get();
+
+        return view('entries.index', compact('entries', 'links'));
     }
 
     /**
@@ -32,7 +60,7 @@ class EntriesController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
+        $products = Product::orderBy('name')->get();
 
         return view('entries.create', compact('products'));
     }
